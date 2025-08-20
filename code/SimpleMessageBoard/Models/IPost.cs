@@ -1,4 +1,4 @@
-﻿namespace SimpleMessageBoard.Repositories;
+﻿namespace SimpleMessageBoard.Models;
 
 internal interface IPost
 {
