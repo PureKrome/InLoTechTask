@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
+
 
 namespace SimpleMessageBoard.Features.Posting.Commands;
 
-public class CreatePostValidator
+public class CreatePostValidator : AbstractValidator<Post>
 {
+    
 }

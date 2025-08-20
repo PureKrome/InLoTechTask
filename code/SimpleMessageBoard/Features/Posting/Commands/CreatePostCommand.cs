@@ -1,5 +1,7 @@
-﻿using SimpleMessageBoard.Repositories;
+﻿namespace SimpleMessageBoard.Features.Posting.Commands;
 
-namespace SimpleMessageBoard.Features.Posting.Commands;
-
-public record CreatePostCommand(Post post);
+public record CreatePostCommand(
+    DateTime PostedAt,
+    string UserName,
+    string Project,
+    string Message) : IRequest; 
