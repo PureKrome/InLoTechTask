@@ -6,6 +6,10 @@
 
 <br />
 
+<img alt="Sample Screenshot" src="https://github.com/user-attachments/assets/9b455952-9ce9-4e59-bdd0-f393a2aaa84e" />
+
+<br />
+
 <div align="center">
     <!-- License -->
     <a href="https://choosealicense.com/licenses/mit/">
