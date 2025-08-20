@@ -1,5 +1,6 @@
 ﻿using SimpleMessageBoard.Features.Following.Commands;
 using SimpleMessageBoard.Features.Posting.Commands;
+using SimpleMessageBoard.Features.Reading.Queries;
 using Spectre.Console;
 
 namespace SimpleMessageBoard.Services;
@@ -61,11 +62,11 @@ public class SpectreCommandParser : ICommandParser
         //    return wallCommand!;
         //}
 
-        //// Try reading pattern: <project name>
-        //if (TryParseReadingCommand(input, out var readCommand))
-        //{
-        //    return readCommand!;
-        //}
+        // Try reading pattern: <project name>
+        if (TryParseReadingCommand(input, out var readCommand))
+        {
+            return readCommand!;
+        }
 
         throw new ArgumentException("Invalid command format");
     }
@@ -141,19 +142,19 @@ public class SpectreCommandParser : ICommandParser
     //    return true;
     //}
 
-    //private static bool TryParseReadingCommand(string input, out GetProjectTimelineQuery? command)
-    //{
-    //    command = null;
+    private static bool TryParseReadingCommand(string input, out ReadProjectQuery? command)
+    {
+        command = null;
 
-    //    // Pattern: <project name> (single word, no spaces)
-    //    if (input.Contains(' ')) return false;
+        // Pattern: <project name> (single word, no spaces)
+        if (input.Contains(' ')) return false;
 
-    //    var projectName = input.Trim();
-    //    if (string.IsNullOrWhiteSpace(projectName)) return false;
+        var projectName = input.Trim();
+        if (string.IsNullOrWhiteSpace(projectName)) return false;
 
-    //    command = new GetProjectTimelineQuery(projectName);
-    //    return true;
-    //}
+        command = new ReadProjectQuery(projectName);
+        return true;
+    }
 
     public static void DisplaySuccessMessage(string message)
     {

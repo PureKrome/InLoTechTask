@@ -9,6 +9,8 @@ public interface IRepository
 
     bool AlreadyFollowingProject(string userName, string project);
 
+    bool DoesProjectExist(string project);
+
     void FollowProject(string userName, string project);
     void UnfollowProject(string userName, string project);
 }

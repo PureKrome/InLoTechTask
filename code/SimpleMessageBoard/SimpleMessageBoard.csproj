@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="Display\" />
-    <Folder Include="Features\Reading\" />
     <Folder Include="Features\Wall\" />
     <Folder Include="Parsing\" />
   </ItemGroup>

@@ -28,6 +28,8 @@ public class InMemoryRepository : IRepository
         return existingProject.Followers.Contains(userName);
     }
 
+    public bool DoesProjectExist(string project) => _projects.ContainsKey(project);
+
     public void FollowProject(string userName, string project)
     {
         var existingProject = EnsureProjectExists(project);
@@ -50,7 +52,7 @@ public class InMemoryRepository : IRepository
 
     private ProjectData EnsureProjectExists(string project)
     {
-        if (!_projects.ContainsKey(project))
+        if (!DoesProjectExist(project))
         {
             _projects[project] = new ProjectData([], []);
         }

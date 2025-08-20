@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace SimpleMessageBoard.Behaviours;
 
-namespace SimpleMessageBoard.Behaviours
+// We can log stuff between calling mediatr and the handler.
+internal class LoggingBehavior
 {
-    internal class LoggingBehavior
-    {
-    }
 }

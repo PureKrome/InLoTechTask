@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using SimpleMessageBoard.Features.Following.Commands;
 using SimpleMessageBoard.Features.Posting.Commands;
+using SimpleMessageBoard.Features.Reading.Queries;
 using SimpleMessageBoard.Repositories;
 using SimpleMessageBoard.Services;
 
@@ -22,15 +23,17 @@ var host = builder.Build();
 
 var mediator = host.Services.GetRequiredService<IMediator>();
 
-Console.WriteLine("Simple Message Board");
-Console.WriteLine("====================");
-Console.WriteLine("Commands:");
-Console.WriteLine("  Posting: <user name> -> @<project name> <message>");
-Console.WriteLine("  Reading: <project name>");
-Console.WriteLine("  Following: <user name> follows <project name>");
-Console.WriteLine("  Wall: <user name> wall");
-Console.WriteLine("  Type 'exit' to quit");
-Console.WriteLine();
+//Console.WriteLine("Simple Message Board");
+//Console.WriteLine("====================");
+//Console.WriteLine("Commands:");
+//Console.WriteLine("  Posting: <user name> -> @<project name> <message>");
+//Console.WriteLine("  Reading: <project name>");
+//Console.WriteLine("  Following: <user name> follows <project name>");
+//Console.WriteLine("  Wall: <user name> wall");
+//Console.WriteLine("  Type 'exit' to quit");
+//Console.WriteLine();
+
+SpectreDisplayService.DisplayWelcomeMessage();
 
 while (true)
 {
@@ -56,7 +59,7 @@ while (true)
         if (command is CreatePostCommand createPostCommand)
         {
             var result = await mediator.Send(createPostCommand);
-            if (result == HandlerResult.NotFollowing)
+            if (result == SimpleMessageBoard.Features.Posting.Commands.HandlerResult.NotFollowing)
             {
                 SpectreCommandParser.DisplayErrorMessage("You must follow the project before posting.");
                 continue;
@@ -77,6 +80,39 @@ while (true)
             {
                 SpectreCommandParser.DisplayInfoMessage($"Already following project {followCommand.ProjectName}");
             }
+        }
+        else if (command is ReadProjectQuery readCommand)
+        {
+            var result = await mediator.Send(readCommand);
+            result.Switch(
+                handlerResult =>
+                {
+                    if (handlerResult == SimpleMessageBoard.Features.Reading.Queries.HandlerResult.ProjectDoesntExist)
+                    {
+                        SpectreCommandParser.DisplayErrorMessage("Project doesn't exist.");
+                    }
+                    else
+                    {
+                        SpectreCommandParser.DisplayErrorMessage("Failed to retrieve project posts.");
+                    }
+                },
+                posts =>
+                {
+                    if (posts.Count == 0)
+                    {
+                        SpectreCommandParser.DisplayInfoMessage("No posts found for this project.");
+                    }
+                    else
+                    {
+                        SpectreDisplayService.DisplayPosts(posts);
+                        //Console.WriteLine($"Posts for project '{readCommand.project}':");
+                        //foreach (var post in posts)
+                        //{
+                        //    Console.WriteLine($"  [{post.PostedAt:yyyy-MM-dd HH:mm:ss}] {post.UserName}: {post.Message}");
+                        //}
+                    }
+                }
+            );
         }
         else
         {
