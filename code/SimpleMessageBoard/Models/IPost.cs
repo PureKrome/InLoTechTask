@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace SimpleMessageBoard.Repositories;
 
-namespace SimpleMessageBoard.Repositories
+internal interface IPost
 {
-    internal interface IPost
-    {
-    }
 }

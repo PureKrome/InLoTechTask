@@ -1,4 +1,4 @@
-﻿namespace SimpleMessageBoard.Repositories;
+﻿namespace SimpleMessageBoard.Models;
 
     public record Post(
         DateTime PostedAt,
