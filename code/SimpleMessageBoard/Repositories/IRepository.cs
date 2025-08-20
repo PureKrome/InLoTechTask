@@ -4,9 +4,11 @@ namespace SimpleMessageBoard.Repositories;
 
 public interface IRepository
 {
-    void AddPost(Post post);
+    void AddPost(Post post, string project);
     List<Post> GetPosts(string project);
 
-    void FollowProject(string userName);
-    void UnfollowProject(string userName);
+    bool AlreadyFollowingProject(string userName, string project);
+
+    void FollowProject(string userName, string project);
+    void UnfollowProject(string userName, string project);
 }

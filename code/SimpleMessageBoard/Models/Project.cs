@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace SimpleMessageBoard.Models;
+﻿namespace SimpleMessageBoard.Models;
 
 public class Project : IProject
 {
@@ -34,11 +32,6 @@ public class Project : IProject
     public void AddPost(Post post)
     {
         ArgumentNullException.ThrowIfNull(post);
-
-        if (string.IsNullOrWhiteSpace(post.Project))
-        {
-            throw new Exception("Project name cannot be empty.");
-        }
 
         _posts.Add(post);
     }

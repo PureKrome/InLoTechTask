@@ -41,8 +41,13 @@
 ## AI Used
 - GitHub copilot (model: Claude Sonnet 4)
   - writing this Readme (didn't like the scenario examples, though)
+  - Test data generation (e.g. MemberData)
+  - Validators
   - todo....
-  
+
+## Notes
+  - No validation in the InMemory 'database'
+
 ## Scenarios
 
 In the below scenarios `">"` denotes the start of user input command in the scenarios listed above and is not part of the input.
@@ -56,7 +61,7 @@ In the below scenarios `">"` denotes the start of user input command in the scen
 
 **Reading**: Bob can view a projects Moonshot's timeline
 
-> `>` Moonshot
+> `>` Moonshot  
 > Alice  
 > I'm working on the login screen (5 minutes ago)  
 > Bob  

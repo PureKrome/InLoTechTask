@@ -2,39 +2,39 @@
 
 public class InMemoryRepository : IRepository
 {
-    // Fake Table: Posts
-    //   - PK: project name
-    //   - List of people following the project.
-    private readonly Dictionary<string, List<string>> _followers = [];
-
-    // Fake Table: Posts
-    //   - PK: project name
-    //   - List of posts.
-    private readonly Dictionary<string, List<Post>> _posts = [];
+    private readonly Dictionary<string, ProjectData> _projects = [];
     
-    public void AddPost(Post post)
+    public void AddPost(Post post, string project)
     {
-        if (!_posts.TryGetValue(post.Project, out var value))
-        {
-            // We don't have any projects
-            value = [];
-            _posts[post.Project] = value;
-        }
+        var existingProject = EnsureProjectExists(project);
 
-        value.Add(post);
+        existingProject.Posts.Add(post);
     }
 
-    public void FollowProject(string userName)
+    public List<Post> GetPosts(string project)
     {
-        if (!_followers.TryGetValue(userName, out var followers))
+        var existingProject = EnsureProjectExists(project);
+
+        // Ordered by most recent first.
+        return existingProject.Posts
+            .OrderByDescending(p => p.PostedAt)
+            .ToList();
+    }
+
+    public bool AlreadyFollowingProject(string userName, string project)
+    {
+        var existingProject = EnsureProjectExists(project);
+
+        return existingProject.Followers.Contains(userName);
+    }
+
+    public void FollowProject(string userName, string project)
+    {
+        var existingProject = EnsureProjectExists(project);
+
+        if (!existingProject.Followers.Contains(userName))
         {
-            // We don't have any followers for this user.
-            followers = [];
-            _followers[userName] = followers;
-        }
-        if (!followers.Contains(userName))
-        {
-            followers.Add(userName);
+            existingProject.Followers.Add(userName);
         }
         else
         {
@@ -42,21 +42,20 @@ public class InMemoryRepository : IRepository
         }
     }
 
-    public List<Post> GetPosts(string project)
+    public void UnfollowProject(string userName, string project)
     {
-        if (_posts.TryGetValue(project, out var posts))
-        {
-            return posts;
-        }
-        else
-        {
-            // No posts for this project.
-            return [];
-        }
+        // Not a requirement, but a suggestion for future implementation.
+        throw new NotImplementedException();
     }
 
-    public void UnfollowProject(string userName)
+    private ProjectData EnsureProjectExists(string project)
     {
-        throw new NotImplementedException();
+        if (!_projects.ContainsKey(project))
+        {
+            _projects[project] = new ProjectData([], []);
+        }
+
+        // Either the newly created project or an existing one is returned.
+        return _projects[project];
     }
 }

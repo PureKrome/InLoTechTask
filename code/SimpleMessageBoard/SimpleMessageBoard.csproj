@@ -8,14 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Following\" />
+    <Folder Include="Display\" />
     <Folder Include="Features\Reading\" />
     <Folder Include="Features\Wall\" />
+    <Folder Include="Parsing\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="MediatR" Version="[12.5.0]" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.8" />
+    <PackageReference Include="Spectre.Console.Cli" Version="0.50.0" />
   </ItemGroup>
 
 </Project>
