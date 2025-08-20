@@ -54,6 +54,7 @@
 ## Notes
   - No validation in the InMemory 'database'
   - Didn't get to the the WALL command
+  - Some tests to highlight different parts of the system to test
   
 ## Scenarios
 
