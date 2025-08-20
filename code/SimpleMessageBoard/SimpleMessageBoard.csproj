@@ -7,4 +7,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Following\" />
+    <Folder Include="Features\Reading\" />
+    <Folder Include="Features\Wall\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="[12.5.0]" />
+  </ItemGroup>
+
 </Project>

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36408.4 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMessageBoard", "code\SimpleMessageBoard\SimpleMessageBoard.csproj", "{610A55A2-BD22-41ED-BCAA-FD3788D1383F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleMessageBoardTests", "code\SimpleMessageBoardTests\SimpleMessageBoardTests.csproj", "{EC0F5D6D-1A1F-46D8-A996-3E7C6EB2F706}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{610A55A2-BD22-41ED-BCAA-FD3788D1383F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{610A55A2-BD22-41ED-BCAA-FD3788D1383F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{610A55A2-BD22-41ED-BCAA-FD3788D1383F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC0F5D6D-1A1F-46D8-A996-3E7C6EB2F706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC0F5D6D-1A1F-46D8-A996-3E7C6EB2F706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC0F5D6D-1A1F-46D8-A996-3E7C6EB2F706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC0F5D6D-1A1F-46D8-A996-3E7C6EB2F706}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
