@@ -53,10 +53,18 @@ while (true)
         var command = parser.ParseCommand(input);
 
         // Handle different command types
-        if (command is CreatePostCommand)
+        if (command is CreatePostCommand createPostCommand)
         {
-            await mediator.Send(command);
-            SpectreCommandParser.DisplaySuccessMessage("Post created successfully!");
+            var result = await mediator.Send(createPostCommand);
+            if (result == HandlerResult.NotFollowing)
+            {
+                SpectreCommandParser.DisplayErrorMessage("You must follow the project before posting.");
+                continue;
+            }
+            else
+            {
+                SpectreCommandParser.DisplaySuccessMessage("Post created successfully!");
+            }
         }
         else if (command is FollowProjectCommand followCommand)
         {

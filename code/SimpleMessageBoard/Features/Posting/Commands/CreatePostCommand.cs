@@ -4,4 +4,4 @@ public record CreatePostCommand(
     DateTime PostedAt,
     string UserName,
     string Project,
-    string Message) : IRequest; 
+    string Message) : IRequest<HandlerResult>; 
